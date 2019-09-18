@@ -1,70 +1,22 @@
 ###################
-What is CodeIgniter
+Assignment Apps
 ###################
-
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Biasa di sebut aplikasi penugasan,
+kenapa aplikasi ini muncul, karena di kampus biasanya jika praktikum ada aslab buat tugas a.k.a pr kita ngirimnya lewat email yang tidak tahu kita emailnya benar/salah, telat ga ngumpulinnya dan masih banyak lagi masalah masalah yang lain.Aplikasi ini datang untuk menjawab semua masalah itu.
+aplikasi ini ada 2 user, yang pertama mahasiswa dan yang kedua aslab
+nah mahasiswa bisa mengumpulkan tugas, bergabung kelas
+aslab membuat tugas, membuat kelas
+simplenya seperti itu, namun akan ada fitur-fitur yang lain
 
 *******************
-Release Information
+Fitur
+- [+] Registrasi
+- [+] Login
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
-
-**************************
-Changelog and New Features
-**************************
-
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
-
 *******************
-Server Requirements
+Alur
+jika user sudah punya akun maka login
+jika belum punya maka registrasi dulu, verifikasi aktivasi menggunakan email agar menghindari dari bot
+sementara fiturnya itu dulu
 *******************
-
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
-
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
