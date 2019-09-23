@@ -46,13 +46,13 @@ class Auth extends CI_Controller{
                 }else {
                     // tidak aktif
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                This email has not activated! </div>');
+                Email belum di aktivasi! </div>');
                     redirect('auth');
                 }
         }else {
             // gagal
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email is not registed! </div>');
+            NIM tidak terdaftar! </div>');
             redirect('auth');
         }
     }
@@ -120,6 +120,18 @@ class Auth extends CI_Controller{
         
     }
 
+    public function logout(){
+        $this->session->unset_userdata('nim');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Logout berhasil! </div>');
+            redirect('auth');
+    }
+
+    public function blocked(){
+        $this->load->view('auth/blocked');
+    }
 
 }
 
