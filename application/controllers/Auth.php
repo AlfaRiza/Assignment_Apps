@@ -2,6 +2,9 @@
 
 class Auth extends CI_Controller{
     public function index(){
+        if ($this->session->userdata('nim')) {
+            redirect('mahasiswa');
+        }
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
@@ -34,9 +37,9 @@ class Auth extends CI_Controller{
                         ];
                         $this->session->set_userdata($data);
                         if ($user['role_id'] == 1) {
-                            redirect('admin');
+                            redirect('aslab');
                         } else {
-                            redirect('user');
+                            redirect('mahasiswa');
                         }
                     }else {
                         // password salah
@@ -58,6 +61,9 @@ class Auth extends CI_Controller{
     }
 
     public function registrasi(){
+        if ($this->session->userdata('nim')) {
+            redirect('mahasiswa');
+        }
         
         $this->form_validation->set_rules('nama','Nama','required|trim',[
             'required' => 'Nama harus diisi'
