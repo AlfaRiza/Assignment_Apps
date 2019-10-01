@@ -10,8 +10,8 @@ simplenya seperti itu, namun akan ada fitur-fitur yang lain
 
 *******************
 Fitur
-- [+] Registrasi
-- [+] Login
+- [x] Registrasi
+- [x] Login
 *******************
 
 *******************
