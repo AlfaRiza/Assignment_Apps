@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="name">Nama</label>
                             <input type="text" class="form-control" id="name" name="nama" value="<?= $user['nama']; ?>">
-                            <?= form_error('name', '<small class="text-danger">', '</small>'); ?>
+                            <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="nim">NIM</label>

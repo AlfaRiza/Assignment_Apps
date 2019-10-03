@@ -33,7 +33,8 @@ class Auth extends CI_Controller{
                         // password benar
                         $data = [
                             'nim' => $user['nim'],
-                            'role_id' => $user['role_id']
+                            'role_id' => $user['role_id'],
+                            'id' => $user['id']
                         ];
                         $this->session->set_userdata($data);
                         if ($user['role_id'] == 1) {
