@@ -11,39 +11,33 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <?php if (!$kelas) { ?>
             <div class="row">
-                <div class="col-md">
-                    <div class="col-md-12 text-center text-success"><h2>Ooopppsss!!! anda belum pernah membuat kelas</h2> <br></div>
+                <?php 
+                    if (!$kelas) { ?>
+                    <div class="col-md-12 text-center text-success"><h2>Ooopppsss!!! anda belum memiliki kelas</h2> <br></div>
                         <div class="col-md d-flex justify-content-center">
                         <img style="width: 30%" src="<?= base_url('assets/img/cry1.png') ?>" class="card-img" alt="..."> <br>
                         </div>
                         <div class="col-md-12 d-flex justify-content-center">
-                        <a href="<?= base_url('aslab/tambahKelas'); ?>" class="btn btn-lg btn-success"><i class="fas fa-plus"></i> Tambah kelas</a>
-                    </div>
-                </div>
-            </div>
-            <?php }else { ?>
-            <div class="row">
+                        <a href="<?= base_url('mahasiswa/katalog') ?>" class="btn btn-lg btn-success"><i class="fas fa-search"></i> Cari kelas</a>
+                        </div>
+                    <?php }else{ ?>
+                    <?php foreach($kelas as $k) : ?>
                 <div class="col-md">
-                    <a href="<?= base_url('aslab/tambahKelas'); ?>" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Buat Kelas Baru</a>
-                </div>
-            </div>
-            <div class="row">
-            <?php foreach($kelas as $k) : ?>
-                <div class="col-md-3 mr-4">
-                    <a href="<?= base_url('aslab/detailKelas/').$k['id']; ?>" class="kelas" >
                     <div class="card" style="width: 18rem;">
                         <img src="<?= base_url('assets/img/class/').$k['image']; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $k['nama_kelas']; ?></h5>
+                            <p class="card-text"><?= $k['deskripsi']; ?></p>
                         </div>
                     </div>
                     </a>
                 </div>
             <?php endforeach; ?>
+
+                <?php } ?>
+            
             </div>
-            <?php } ?>
 
             </div>
             <!-- /.container-fluid -->

@@ -73,7 +73,6 @@ class Mahasiswa extends CI_Controller{
                     echo $this->upload->display_errors();
                 }
             }
-
             $this->user_model->updateData('user',$set,$where);
             
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -81,6 +80,48 @@ class Mahasiswa extends CI_Controller{
             redirect('mahasiswa');
         }
 
+    }
+
+    public function kelas(){
+        $data['judul'] = 'Kelas saya';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        $where = [
+            'id_user' => $this->session->userdata('id'),
+            'is_active' => 1
+        ];
+        $data['kelas'] = $this->user_model->getElementClassbyid('anggota_kelas',$where);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('mahasiswa/kelasSaya',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function katalog(){
+        $data['judul'] = 'Katalog Kelas';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        $data['kelas'] = $this->user_model->getAllClass('kelas');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('mahasiswa/katalogKelas',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahKelas($id){
+        echo 'tambah kelas';
+    }
+
+    public function aslab(){
+        $data['judul'] = 'Profil Aslab';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        $data['aslab'] = $this->user_model->getAllAslab('user',['role_id' => 1]);
+        $data['kelas'] = $this->user_model->getAllClass('kelas');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('mahasiswa/profilAslab',$data);
+        $this->load->view('templates/footer');
     }
 }
 

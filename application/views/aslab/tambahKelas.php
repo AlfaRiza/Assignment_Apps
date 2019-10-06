@@ -10,10 +10,10 @@
                         <div class="card" style="width: 100%;">
                                 <img class="card-img-top" src="<?= base_url('assets/img/class/default.jpg') ?>" alt="Card image cap">
                         </div>
-                        <!-- <div class="custom-file mt-4">
+                        <div class="custom-file">
                             <input type="file" class="custom-file-input" id="image" name="image">
                             <label class="custom-file-label" for="image"></label>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
@@ -37,7 +37,7 @@
                         ?>
                         <div class="form-group">
                             <label for="token">Token</label>
-                            <input type="text" class="form-control" id="token" name="token" value="<?= $str; ?>" disable>
+                            <input type="text" class="form-control" id="token" name="token" value="<?= $str; ?>" readonly>
                             <?= form_error('token', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         

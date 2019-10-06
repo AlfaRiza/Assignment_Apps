@@ -24,7 +24,7 @@
                             <h5 class="card-title">Selamat Datang <b class="text-success"><?= $user['nama']; ?></b></h5>
                             <p class="card-text"><?= $user['nim'];?></p>
                             <p class="card-text"><?= $user['email'];?></p>
-                            <a href="#" class="btn btn-primary">Kelas saya</a>
+                            <a href="<?= base_url('mahasiswa/kelas'); ?>" class="btn btn-primary">Kelas saya</a>
                         </div>
                     </div>
                 </div>
