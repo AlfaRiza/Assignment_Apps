@@ -31,10 +31,10 @@
             </div>
             <div class="row">
             <?php foreach($kelas as $k) : ?>
-                <div class="col-md-3 mr-4">
+                <div class="col-md-3 mt-3">
                     <a href="<?= base_url('aslab/detailKelas/').$k['id']; ?>" class="kelas" >
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?= base_url('assets/img/class/').$k['image']; ?>" class="card-img-top" alt="...">
+                    <div class="card" style="width: 15rem;">
+                        <img height="250px" src="<?= base_url('assets/img/class/').$k['image']; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $k['nama_kelas']; ?></h5>
                         </div>

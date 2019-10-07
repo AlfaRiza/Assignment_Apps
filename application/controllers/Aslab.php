@@ -42,47 +42,61 @@ class Aslab extends CI_Controller{
             $this->load->view('aslab/tambahKelas',$data);
             $this->load->view('templates/footer');
         }else{
-            $data = [
-                'nama_kelas' => htmlspecialchars($this->input->post('class_name'), true),
-                'image' => 'default.jpg',
-                'id_user_created' => $this->session->userdata('id'),
-                'deskripsi' => htmlspecialchars($this->input->post('description'),true),
-                'token' => $this->input->post('token') ,
-                'date_create' => time(),
-                'is_active' => 1
-            ];
-
             // cek gambar yg diupload
             $upload_image = $_FILES['image']['name'];
             if ($upload_image) {
-                $config['upload_path'] = './assets/img/profile/';
+                $config['upload_path'] = './assets/img/class/';
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size']     = '2048';
 
                 $this->load->library('upload', $config);
                 if ($this->upload->do_upload('image')) {
-                    //$old_image = $data['user']['foto'];
-                    //if ($old_image != 'default.jpg') {
-                    //    unlink(FCPATH . 'assets/img/profile' . $old_image);
-                    //}
                     $new_image = $this->upload->data('file_name');
                     if (!$new_image) {
-                        $setw = ['image' => 'default.jpg'];
+                        $data = [
+                            'nama_kelas' => htmlspecialchars($this->input->post('class_name'), true),
+                            'image' => 'default.jpg',
+                            'id_user_created' => $this->session->userdata('id'),
+                            'deskripsi' => htmlspecialchars($this->input->post('description'),true),
+                            'token' => $this->input->post('token') ,
+                            'date_create' => time(),
+                            'is_active' => 1
+                        ];
                     }else {
-                    $setw = [
-                        'image'=> $new_image
-                    ];
+                        $data = [
+                            'nama_kelas' => htmlspecialchars($this->input->post('class_name'), true),
+                            'image' => $new_image,
+                            'id_user_created' => $this->session->userdata('id'),
+                            'deskripsi' => htmlspecialchars($this->input->post('description'),true),
+                            'token' => $this->input->post('token') ,
+                            'date_create' => time(),
+                            'is_active' => 1
+                        ];
                 }
-                    $this->aslab_model->updateData('user', $setw, $where);
+                    $this->aslab_model->insertDB('kelas',$data);
+                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                    Kelas berhasil ditambahkan! </div>');
+                    redirect('aslab/kelola');
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                    <?= $this->upload->display_errors(); ?></div>');
+                    redirect('aslab/kelola');
                 }
+            }else{
+                $data = [
+                    'nama_kelas' => htmlspecialchars($this->input->post('class_name'), true),
+                    'image' => 'default.jpg',
+                    'id_user_created' => $this->session->userdata('id'),
+                    'deskripsi' => htmlspecialchars($this->input->post('description'),true),
+                    'token' => $this->input->post('token') ,
+                    'date_create' => time(),
+                    'is_active' => 1
+                ];
+                $this->aslab_model->insertDB('kelas',$data);
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                Kelas berhasil ditambahkan! </div>');
+                redirect('aslab/kelola');
             }
-
-            $this->aslab_model->insertDB('kelas',$data);
-            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
-            Kelas berhasil ditambahkan! </div>');
-            redirect('aslab/kelola');
         }
     }
 

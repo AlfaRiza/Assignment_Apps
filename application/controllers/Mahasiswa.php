@@ -123,6 +123,50 @@ class Mahasiswa extends CI_Controller{
         $this->load->view('mahasiswa/profilAslab',$data);
         $this->load->view('templates/footer');
     }
+
+    public  function changepassword(){
+        $data['judul'] = 'Change Password';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        // echo 'Selamat datang ' . $data['user']['name'];
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[8]|matches[new_password2]');
+        $this->form_validation->set_rules('new_password2', 'Repeat Password', 'required|trim|min_length[8]|matches[new_password1]');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('mahasiswa/changepassword',$data);
+            $this->load->view('templates/footer');
+        } else {
+            $current_password = $this->input->post('current_password');
+            $new_password = $this->input->post('new_password1');
+            if (!password_verify($current_password, $data['user']['password'])) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Password lama salah! </div>');
+                redirect('mahasiswa/changepassword');
+            } else {
+                if ($new_password == $current_password) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Password baru tidak boleh sama dengan password lama </div>');
+                    redirect('mahasiswa/changepassword');
+                } else {
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+                    $set = [
+                        'password' => $password_hash
+                    ];
+                    $nim = $this->session->userdata('nim');
+                    $where = [
+                        'nim' => $nim
+                    ];
+                    $this->user_model->updateData('user',$set,$where);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                    Password berhasil diubah </div>');
+                    redirect('mahasiswa/changepassword');
+                }
+            }
+        }
+    }
+
 }
 
 ?>

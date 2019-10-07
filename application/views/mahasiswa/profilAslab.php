@@ -14,8 +14,8 @@
             <div class="row">
                 <?php foreach ($aslab as $as):?>
                     <div class="col-md-3 mr-4"> 
-                        <div class="card" style="width: 18rem;" >
-                            <img src="<?= base_url('assets/img/profile/').$as['foto']; ?>" class="card-img-top" alt="...">
+                        <div class="card pt-2 px-2" style="width: 17rem;" >
+                            <img width="50%" src="<?= base_url('assets/img/profile/').$as['foto']; ?>" class="card-img-top rounded-circle" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $as['nama'] ?></h5>
                                 <p class="card-text"><?= $as['nim'] ?></p>
