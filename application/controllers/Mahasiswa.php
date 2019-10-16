@@ -85,11 +85,8 @@ class Mahasiswa extends CI_Controller{
     public function kelas(){
         $data['judul'] = 'Kelas saya';
         $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
-        $where = [
-            'id_user' => $this->session->userdata('id'),
-            'is_active' => 1
-        ];
-        $data['kelas'] = $this->user_model->getElementClassbyid('anggota_kelas',$where);
+        $id = $this->session->userdata('id');
+        $data['kelas'] = $this->user_model->getElementClassbyid('anggota_kelas',$id);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -109,7 +106,40 @@ class Mahasiswa extends CI_Controller{
     }
 
     public function tambahKelas($id){
-        echo 'tambah kelas';
+
+        $this->form_validation->set_rules('token', 'Token' , 'required|trim|exact_length[4]');
+
+        $token_kelas = $this->user_model->getClassbyid('kelas',['id' => $id]);
+        if ( $this->form_validation->run() == false ) {
+            $data['judul'] = 'Katalog Kelas';
+            $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+            $data['kelas'] = $this->user_model->getClassbyid('kelas',['id' => $id]);
+            $data['aslab'] = $this->user_model->getAslabatClass($id);
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('mahasiswa/tambahKelas',$data);
+            $this->load->view('templates/footer');
+        }else{
+            $token = htmlspecialchars($this->input->post('token'),true);
+            if ($token == $token_kelas['token'] ) {
+                $data = [
+                    'id_kelas' => $token_kelas['id'],
+                    'id_user' => $this->session->userdata('id'),
+                    'is_active' => 1,
+                    'date_create' => time()
+                ];
+                $this->user_model->addClass('anggota_kelas',$data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Yeayy berhasil gabung kelas</div>');
+            redirect('mahasiswa/kelas');
+            }else {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Yeayy berhasil gabung kelas</div>');
+            redirect('mahasiswa/katalog');
+            }
+        }
+
     }
 
     public function aslab(){

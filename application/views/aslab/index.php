@@ -1,6 +1,6 @@
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div style="margin-top: -24px;">
 
             <!-- Page Heading -->
             <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">

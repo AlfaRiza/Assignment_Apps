@@ -11,8 +11,9 @@ class user_model extends CI_Model{
         $this->db->update($tabel);
     }
 
-    public function getElementClassbyid($table,$where){
-        $result = $this->db->get_where($table, $where)->result_array();
+    public function getElementClassbyid($table,$id){
+        $query = "SELECT k.nama_kelas , k.image , k.deskripsi , k.date_create FROM kelas k JOIN anggota_kelas ak ON k.id = ak.id_kelas WHERE ak.id_user = $id AND ak.is_active = 1 ";
+        $result = $this->db->query($query)->result_array();
         return $result;
     }
 
@@ -27,6 +28,17 @@ class user_model extends CI_Model{
 
     public function getAllAslab($table,$where){
         $result = $this->db->get_where($table,$where)->result_array();
+        return $result;
+    }
+
+    public function getClassbyID($table,$where){
+        $result = $this->db->get_where($table,$where)->row_array();
+        return $result;
+    }
+
+    public function getAslabatClass($id){
+        $query = "SELECT u.nama , u.nim , u.email, u.foto , u.no_telp FROM user u JOIN kelas k ON u.id = k.id_user_created WHERE k.id = $id";
+        $result = $this->db->query($query)->row_array();
         return $result;
     }
 }
