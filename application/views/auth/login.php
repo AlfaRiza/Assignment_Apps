@@ -20,10 +20,12 @@
                     </div>
                     <form class="user" method="post" action="<?= base_url('auth'); ?>">
                         <div class="form-group">
-                        <input type="text" class="form-control form-control-user" autofocus id="nim" name="nim" placeholder="Masukkan NIM">
+                        <input type="text" class="form-control form-control-user" autofocus id="nim" name="nim" placeholder="Masukkan NIM" value="<?= set_value('nim'); ?>">
+                        <?= form_error('nim', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                        <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                         </div>

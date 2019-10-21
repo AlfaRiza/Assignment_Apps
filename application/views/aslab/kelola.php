@@ -16,7 +16,7 @@
                 <div class="col-md">
                     <div class="col-md-12 text-center text-success"><h2>Ooopppsss!!! anda belum pernah membuat kelas</h2> <br></div>
                         <div class="col-md d-flex justify-content-center">
-                        <img style="width: 30%" src="<?= base_url('assets/img/cry1.png') ?>" class="card-img" alt="..."> <br>
+                        <img style="width: 20%" src="<?= base_url('assets/img/cry1.png') ?>" class="card-img" alt="..."> <br>
                         </div>
                         <div class="col-md-12 d-flex justify-content-center">
                         <a href="<?= base_url('aslab/tambahKelas'); ?>" class="btn btn-lg btn-success"><i class="fas fa-plus"></i> Tambah kelas</a>
@@ -32,14 +32,13 @@
             <div class="row">
             <?php foreach($kelas as $k) : ?>
                 <div class="col-md-3 mt-3">
-                    <a href="<?= base_url('aslab/detailKelas/').$k['id']; ?>" class="kelas" >
-                    <div class="card" style="width: 17.5rem;">
+                    <div class="card" style="width: 15.5rem;">
                         <img height="250px" src="<?= base_url('assets/img/class/').$k['image']; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $k['nama_kelas']; ?></h5>
                         </div>
+                        <a href="<?= base_url('aslab/lihatKelas/').$k['id']; ?>" class="btn btn-outline-primary" >Lihat Kelas</a>
                     </div>
-                    </a>
                 </div>
             <?php endforeach; ?>
             </div>

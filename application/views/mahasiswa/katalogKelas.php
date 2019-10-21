@@ -14,7 +14,7 @@
             <div class="row">
                 <?php foreach($kelas as $k) :?>
                 <div class="col-md-3 pt-3">
-                <div class="card" style="width: 17.5rem;">
+                <div class="card" style="width: 15.5rem;">
                     <img height="250px" class="card-img-top" src="<?= base_url('assets/img/class/').$k['image']; ?>" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"><?= $k['nama_kelas']; ?></h5>

@@ -5,8 +5,15 @@ class Auth extends CI_Controller{
         if ($this->session->userdata('nim')) {
             redirect('mahasiswa');
         }
-        $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules('nim', 'NIM', 'required|trim|numeric|exact_length[9]',[
+            'required' => 'NIM harus diisi',
+            'numeric'   => 'Harus berupa angka',
+            'exact_length' => 'Harus 9 karakter'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]',[
+            'required' => 'Password harus diisi',
+            'min_length' => 'Minimal 8 karakter'
+        ]);
 
         if($this->form_validation->run() == false){
             $data['judul'] = 'Halaman Login UPN Lab';

@@ -54,7 +54,10 @@
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/'); ?>js/demo/chart-area-demo.js"></script>
     <script src="<?= base_url('assets/'); ?>js/demo/chart-pie-demo.js"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script>
         $('.custom-file-input').on('change',function () {
             let fileName = $(this).val().split('\\').pop();
