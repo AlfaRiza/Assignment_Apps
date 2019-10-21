@@ -12,7 +12,7 @@ class user_model extends CI_Model{
     }
 
     public function getElementClassbyid($table,$id){
-        $query = "SELECT k.nama_kelas , k.image , k.deskripsi , k.date_create FROM kelas k JOIN anggota_kelas ak ON k.id = ak.id_kelas WHERE ak.id_user = $id AND ak.is_active = 1 ";
+        $query = "SELECT k.nama_kelas, k.id , k.image , k.deskripsi , k.date_create FROM kelas k JOIN anggota_kelas ak ON k.id = ak.id_kelas WHERE ak.id_user = $id AND ak.is_active = 1 ";
         $result = $this->db->query($query)->result_array();
         return $result;
     }
