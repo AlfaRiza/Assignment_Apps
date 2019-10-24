@@ -10,8 +10,33 @@ simplenya seperti itu, namun akan ada fitur-fitur yang lain
 
 *******************
 Fitur
-- [x] Registrasi
-- [x] Login
+[x] Registrasi
+[x] Login
+[x] Halaman aslab
+[x] Halaman mahasiswa
+[x] Kelola kelas/tampil kelas(fitur aslab)
+[x] Tambah kelas(fitur aslab)
+[x] Edit kelas(fitur aslab)
+[x] Tambah tugas dikelas(fitur aslab)
+[x] Edit profile
+[x] Change password
+[x] Kelas saya/tampil kela yang diikuti
+[x] Tampil tugas yang ada di kelas
+[x] Katalog kelas/ menampilkan semua kelas yang ada
+[x] Ikuti kelas{mengikuti kelas setelah memasukkan token}
+[x] Profil aslab{menampilkan semua aslab}
+[x] Kumpulkan tugas
+[x] Tampilkan tugas dari aslab dan download dalam bentuk pdf
+
+
+
+Coming soon
+- Search kelas
+- Enkripsi url
+- Live CRUD
+- Input nilai (fitur aslab)
+- Batas waktu pengumpulan tugas
+
 *******************
 
 *******************
