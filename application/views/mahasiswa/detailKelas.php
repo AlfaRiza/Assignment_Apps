@@ -47,9 +47,10 @@
             <div class="col-md-12">
             <?php foreach($tugas as $t) : ?>
                     <div class="list-group mb-3">
-                        <a href="<?= base_url('aslab/detailTugas'); ?>" class="list-group-item list-group-item-action">
+                        <a class="list-group-item list-group-item-action">
                             <?= $t['Title']; ?>
                             <p><?= date('d F Y, h:i:s A', $t['batas_waktu']); ?></p>
+                            <a href="<?= base_url('mahasiswa/detailTugas/'.$t['id']);?>">Lihat kelas</a>
                         </a>
                     </div>
                     <?php endforeach; ?>

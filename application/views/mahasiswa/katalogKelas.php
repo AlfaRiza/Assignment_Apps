@@ -6,6 +6,16 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800"><?= $judul; ?></h1>
             </div>
+            <div class="d-sm-flex align-items-center justify-content-center mb-4">
+            <form action="" method="post">
+                    <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari Data Mahasiswa" name="keyword">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-fw fa-search"></i></button>
+                    </div>
+                    </div>
+                </form>
+            </div>
             <div class="row">
                 <div class="col-md">
                     <?= $this->session->flashdata('message'); ?>

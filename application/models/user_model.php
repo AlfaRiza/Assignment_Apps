@@ -41,6 +41,24 @@ class user_model extends CI_Model{
         $result = $this->db->query($query)->row_array();
         return $result;
     }
+
+    public function getAnggota($id){
+        $user = $this->session->userdata('id');
+        $query = "SELECT * FROM anggota_kelas WHERE id_kelas='$id' AND id_user = '$user'";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function getTask($table,$where){
+        return $this->db->get_where($table,$where)->row_array();
+    }
+
+    public function cariDataMahasiswa()
+    {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('nama_kelas', $keyword);
+        $this->db->or_like('deskripsi', $keyword);
+        return $this->db->get('kelas')->result_array();
+    }
 }
 
 

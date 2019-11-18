@@ -98,6 +98,9 @@ class Mahasiswa extends CI_Controller{
         $data['judul'] = 'Katalog Kelas';
         $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
         $data['kelas'] = $this->user_model->getAllClass('kelas');
+        if ($this->input->post('keyword')) {
+            $data['kelas'] = $this->user_model->CariDataMahasiswa();
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -223,7 +226,63 @@ class Mahasiswa extends CI_Controller{
         $this->load->view('mahasiswa/detailKelas',$data);
         $this->load->view('templates/footer');
     }
+    public function detailTugas($id){
+        $data['judul'] = 'Kelas saya';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        $data['tugas'] = $this->user_model->getData('tugas',['id' => $id]);
+        $data['task'] = $this->user_model->getTask('task',['id_tugas'=>$id,'id_user' => $this->session->userdata('id')]);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('mahasiswa/detailTugas',$data);
+        $this->load->view('templates/footer');
+    }
 
-}
+    public function download($id){
+        $tugas = $this->user_model->getData('tugas',['id' => $id]);
+        force_download('assets/img/tugas/'.$tugas['example'],NULL);
+    }
+
+    public function kumpulTugas($id_tugas){
+        $new_file = $_FILES['file']['name'];
+            if ($new_file) {
+                $config['upload_path'] = './assets/img/task/';
+                $config['allowed_types'] = 'pdf|zip|rar';
+                $config['max_size']     = '20480';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('file')) {
+                    $file = $this->upload->data('file_name');
+                    if (!$new_file) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                        Tugas gagal dikumpul file tidak ada</div>');
+                        redirect('mahasiswa/kelas');
+                    }else {
+                        $new_file = $file;
+                }
+                } else {
+                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                '.$this->upload->display_errors().'</div>');
+                redirect('mahasiswa/kelas');
+                }
+            }else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                        Tugas gagal dikumpul</div>');
+                        redirect('mahasiswa/kelas');
+            }
+            $data = [
+                'id_tugas' => $id_tugas,
+                'id_user' => $this->session->userdata('id'),
+                'is_late' => 0,
+                'file' => $file,
+                'date_create' => time()
+            ];
+            $this->user_model->addClass('task',$data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Tugas berhasil dikumpul</div>');
+            redirect('mahasiswa/kelas');
+        }
+    }
 
 ?>

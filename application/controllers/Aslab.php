@@ -33,7 +33,7 @@ class Aslab extends CI_Controller{
         ]);
 
         if($this->form_validation->run() == false){
-            $data['judul'] = 'Kelola kelas';
+            $data['judul'] = 'Tambah Kelas';
             $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
             $data['kelas'] = $this->aslab_model->getClass('kelas',['id_user_created' => $this->session->userdata('id')]);
             $this->load->view('templates/header', $data);
@@ -104,7 +104,7 @@ class Aslab extends CI_Controller{
                 $data['judul'] = 'Kelola kelas';
                 $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
                 $data['kelas'] = $this->aslab_model->getClassbyID('kelas',['id' => $id]);
-                $data['tugas'] = $this->aslab_model->getTugasbyClass('tugas',['id_kelas' => $data['kelas']['id']]);
+                $data['tugas'] = $this->aslab_model->getTugasbyClass('tugas',['id_kelas' => $id]);
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/sidebar');
                 $this->load->view('templates/topbar');
@@ -142,7 +142,6 @@ class Aslab extends CI_Controller{
             $bts_waktu = $this->input->post('bts_waktu');
             $bts_waktu1 = strtotime($bts_waktu);
             $this->_uploadgambar($bts_waktu1,$id_kelas);
-            
         }
         }
         
@@ -152,58 +151,126 @@ class Aslab extends CI_Controller{
         $upload_image = $_FILES['image']['name'];
         if ($upload_image) {
             $config['upload_path'] = './assets/img/tugas/';
-            $config['allowed_types'] = 'gif|jpg|png|pdf';
-            $config['max_size']     = '2048';
+            $config['allowed_types'] = 'gif|jpg|png|pdf|zip|rar';
+            $config['max_size']     = '20480';
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('image')) {
                 $new_image = $this->upload->data('file_name');
                 if (!$new_image) {
-                    $data = [
-                        'Title' => htmlspecialchars( $this->input->post('title'),true),
-                        'Description' => htmlspecialchars( $this->input->post('description'),true),
-                        'image' => 'default.jpg',
-                        'batas_waktu' => $bts_waktu1,
-                        'id_kelas' => $id_kelas,
-                        'is_active' => 1,
-                        'date_created' => time()
-                    ];
+                    $image = 'default.jpg';
                 }else {
-                    $data = [
-                        'Title' => htmlspecialchars( $this->input->post('title'),true),
-                        'Description' => htmlspecialchars( $this->input->post('description'),true),
-                        'image' => $new_image,
-                        'batas_waktu' => $bts_waktu1,
-                        'id_kelas' => $id_kelas,
-                        'is_active' => 1,
-                        'date_created' => time()
-                    ];
+                    $image = $new_image;
             }
-                $this->aslab_model->insertDB('tugas',$data);
-                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
-                Tugas berhasil ditambahkan! </div>');
-                redirect('aslab/lihatKelas/'.$id_kelas);
+                
             } else {
-                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
                 <?= $this->upload->display_errors(); ?></div>');
                 redirect('aslab/lihatKelas/'.$id_kelas);
             }
         }else{
-            $data = [
-                'Title' => htmlspecialchars( $this->input->post('title'),true),
-                'Description' => htmlspecialchars( $this->input->post('description'),true),
-                'image' => 'default.jpg',
-                'batas_waktu' => $bts_waktu1,
-                'id_kelas' => $id_kelas,
-                'is_active' => 1,
-                'date_created' => time()
-            ];
-            $this->aslab_model->insertDB('tugas',$data);
+            $image = 'default.jpg';
+        }
+        $upload_file = $_FILES['example']['name'];
+        if ($upload_file) {
+            $config1['upload_path'] = './assets/file/example/';
+            $config1['allowed_types'] = 'pdf|zip|rar';
+            $config1['max_size']     = '20480';
+
+            $this->load->library('upload', $config1);
+            if ($this->upload->do_upload('example')) {
+                $new_file = $this->upload->data('file_name');
+                if (!$new_file) {
+                    $file = '';
+                }else {
+                    $file = $new_file;
+            }
+                
+            } else {
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                '. $this->upload->display_errors() .'</div>');
+                redirect('aslab/lihatKelas/'.$id_kelas);
+            }
+        }else{
+            $file = '';
+        }
+
+        $data = [
+            'Title' => htmlspecialchars( $this->input->post('title'),true),
+            'Description' => htmlspecialchars( $this->input->post('description'),true),
+            'image' => $image,
+            'example' => $file,
+            'batas_waktu' => $bts_waktu1,
+            'id_kelas' => $id_kelas,
+            'is_active' => 1,
+            'date_created' => time()
+        ];
+                $this->aslab_model->insertDB('tugas',$data);
+                //$this->_uploadexample();
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                Tugas berhasil ditambahkan! </div>');
+                redirect('aslab/lihatKelas/'.$id_kelas);
+    }
+
+    public function detailTugas($id_kelas,$id_tugas){
+        $data['judul'] = 'Kelola kelas';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        $data['task'] = $this->aslab_model->getTask($id_kelas,$id_tugas);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('aslab/detailTugas',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function lihatAnggota($id_kelas){
+        $data['judul'] = 'Kelola kelas';
+        $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+        $data['kelas'] = $this->aslab_model->getClassbyID('kelas',['id' => $id_kelas]);
+                $data['tugas'] = $this->aslab_model->getTugasbyClass('tugas',['id_kelas' => $id_kelas]);
+        $data['anggota'] = $this->aslab_model->getAnggota($id_kelas);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('aslab/lihatAnggota',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function lihatTugas($id_task){
+        $this->form_validation->set_rules('nilai','Nilai','required|trim|numeric',[
+            'required' => 'Nilai harus diisi',
+            'numeric' => 'Nilai harus angka'
+        ]);
+
+        if ( $this->form_validation->run() == false ) {
+            $data['judul'] = 'Kelola kelas';
+            $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+            $data['task'] = $this->aslab_model->getTaskbyID($id_task);
+            $data['id_task'] = $id_task;
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('aslab/lihatTugas',$data);
+            $this->load->view('templates/footer');
+        }else {
+            $nilai = $this->input->post('nilai');
+            $this->aslab_model->updateClass('task',['nilai' => $nilai],['id' => $id_task]);
             $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
-            Tugas berhasil ditambahkan! </div>');
-            redirect('aslab/lihatKelas/'.$id_kelas);
+            Nilai berhasil diinput! </div>');
+            redirect(base_url('aslab/kelola'));
         }
     }
+
+    public function download($file){
+        force_download('assets/img/task/'.$file,NULL);
+    }
+
+    // public function pdf(){
+    //     $this->load->library('dompdf_gen');
+
+
+    // }
+
 }
 
 ?>

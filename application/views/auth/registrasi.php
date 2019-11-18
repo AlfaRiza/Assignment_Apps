@@ -31,7 +31,7 @@
                     <?= form_error('no_telp','<small class="text-danger pl-3">','</small>'); ?>
                     </div>
                     <div class="form-group">
-                    <textarea class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="<?= set_value('alamat'); ?>" ></textarea>
+                    <textarea class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="<?= set_value('alamat'); ?>" ><?= set_value('alamat'); ?></textarea>
                     <?= form_error('alamat','<small class="text-danger pl-3">','</small>'); ?>
                     </div>
                     <div class="form-group row">
@@ -50,7 +50,7 @@
                 </form>
                 <hr>
                 <div class="text-center">
-                    <a class="small" href="forgot-password.html">Lupa Password?</a>
+                    <a class="small" href="<?= base_url('auth/forgotPassword') ?>">Lupa Password?</a>
                 </div>
                 <div class="text-center">
                     <a class="small" href="<?= base_url(); ?>">Sudah Punya Akun? Login!</a>

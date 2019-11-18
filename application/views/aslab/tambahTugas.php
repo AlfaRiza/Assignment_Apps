@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group ">
                         <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="example">
+                        <input type="file" class="custom-file-input" name="example" id="example">
                         <label class="custom-file-label" for="example">Example</label>
                         </div>
                         <?= form_error('example', '<small class="text-danger">', '</small>'); ?>

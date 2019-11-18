@@ -35,7 +35,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a class="small" href="forgot-password.html">Lupa Password?</a>
+                        <a class="small" href="<?= base_url('auth/forgotPassword') ?>">Lupa Password?</a>
                     </div>
                     <div class="text-center">
                         <a class="small" href="<?= base_url('auth/registrasi'); ?>">Belum Punya Akun?</a>

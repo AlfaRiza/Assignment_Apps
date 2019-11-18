@@ -17,16 +17,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto mr-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Lihat Anggota<span class="sr-only"></span></a>
+                            <a class="nav-link" href="<?= base_url('aslab/lihatAnggota/').$kelas['id']; ?>">Lihat Anggota<span class="sr-only"></span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('aslab/tambahTugas/').$kelas['id']; ?>">Tambah Tugas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Lihat Semua Tugas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Lihat Nilai</a>
                         </li>
                         </ul>
                     </div>
@@ -53,7 +47,7 @@
             <div class="col-md-12">
             <?php foreach($tugas as $t) : ?>
                     <div class="list-group mb-3">
-                        <a href="<?= base_url('aslab/detailTugas'); ?>" class="list-group-item list-group-item-action">
+                        <a href="<?= base_url('aslab/detailTugas/'). $kelas['id'].'/'.$t['id']?>" class="list-group-item list-group-item-action">
                             <?= $t['Title']; ?>
                             <p><?= date('d F Y, h:i:s A', $t['batas_waktu']); ?></p>
                         </a>
