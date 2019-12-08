@@ -261,8 +261,9 @@ class Aslab extends CI_Controller{
         }
     }
 
-    public function download($file){
-        force_download('assets/img/task/'.$file,NULL);
+    public function download($id){
+        $file = $this->aslab_model->getClassbyID('task',['id'=>$id]);
+        force_download('assets/img/task/'.$file['file'],NULL);
     }
 
     // public function pdf(){

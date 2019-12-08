@@ -41,6 +41,10 @@
                     <div class="alert alert-success" role="alert">
                     Anda sudah mengumpulkan
                     </div>
+                <?php }elseif ($tugas['batas_waktu'] < time()) { ?>
+                    <div class="alert alert-danger" role="alert">
+                    Waktu Habis
+                    </div>
                 <?php }else{ ?>
                 <?= form_open_multipart('mahasiswa/kumpulTugas/'.$tugas['id']); ?>
                     <div class="form-group">

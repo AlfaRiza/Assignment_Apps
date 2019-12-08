@@ -21,7 +21,7 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title"><?= $task['nama']; ?></h5>
-                            <a href="<?= base_url('mahasiswa/download/').$task['file']; ?>" class="btn btn-primary card-link"><i class="fas fa-fw fa-file-download"></i> Download</a>
+                            <a href="<?= base_url('aslab/download/').$id_task; ?>" class="btn btn-primary card-link"><i class="fas fa-fw fa-file-download"></i> Download</a>
                             <a href="#" data-id="<?= $task['file']; ?>" class="card-link" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-fw fa-eye"></i> Preview</a>
                             <br><br>
                             <form action="<?= base_url('aslab/lihatTugas/').$id_task; ?>" method="POST">
@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                    <a href="<?= base_url('mahasiswa/download/').$task['file']; ?>" class="btn btn-primary">Download</a>
+                    <a href="<?= base_url('aslab/download/').$id_task; ?>" class="btn btn-primary">Download</a>
                 </div>
                 </div>
             </div>

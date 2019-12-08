@@ -283,6 +283,17 @@ class Mahasiswa extends CI_Controller{
             Tugas berhasil dikumpul</div>');
             redirect('mahasiswa/kelas');
         }
+
+        public function detailAslab($id){
+            $data['judul'] = 'Profil Aslab';
+            $data['user'] = $this->user_model->getData('user',['nim' => $this->session->userdata('nim')]);
+            $data['aslab'] = $this->user_model->getData('user',['id'=>$id]);
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('mahasiswa/detailAslab',$data);
+            $this->load->view('templates/footer');
+        }
     }
 
 ?>
