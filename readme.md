@@ -10,9 +10,9 @@ simplenya seperti itu, namun akan ada fitur-fitur yang lain
 ## Getting Started
 
 aplikasi ini sudah saya hosting, untuk link :
-[link assignment app](https://upnlab.000webhostapp.com/ "Assignment App")
-[link demo aplikasi](https://youtu.be/yhdig0rCm4c "Demo Aplikasi")
-[link ppt](https://drive.google.com/open?id=1pm-lywSlS2StpLohQmFipAiVQWDO4tJ1 "PPT")
+- [link assignment app](https://upnlab.000webhostapp.com/ "Assignment App")
+- [link demo aplikasi](https://youtu.be/yhdig0rCm4c "Demo Aplikasi")
+- [link ppt](https://drive.google.com/open?id=1pm-lywSlS2StpLohQmFipAiVQWDO4tJ1 "PPT")
 
 
 ### Fitur
