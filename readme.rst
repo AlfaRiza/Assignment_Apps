@@ -1,4 +1,5 @@
 # Assignment App
+
 Aplikasi untuk mengumpulkan tugas dari aslab, karena tiap pengumpulan tugas melaui email dan kadang hilang data tugas nya
 maka dibutuhkan pembaruan berupa pembuatan aplikasi pengumpulan tugas.
 aplikasi ini ada 2 user, yang pertama mahasiswa dan yang kedua aslab
@@ -7,6 +8,7 @@ aslab membuat tugas, membuat kelas
 simplenya seperti itu, namun akan ada fitur-fitur yang lain
 
 ##Getting Started
+
 aplikasi ini sudah saya hosting, untuk link :
 [link assignment app](https://upnlab.000webhostapp.com/ "Assignment App")
 [link demo aplikasi](https://youtu.be/yhdig0rCm4c "Demo Aplikasi")
@@ -14,6 +16,7 @@ aplikasi ini sudah saya hosting, untuk link :
 
 
 ###Fitur
+
 - [x] Registrasi
 - [x] Login
 - [x] Halaman aslab
@@ -36,13 +39,16 @@ aplikasi ini sudah saya hosting, untuk link :
 - [x] search kelas
 
 ###Coming soon
+
 - [ ]Live CRUD
 - [ ]Enkripsi link
 
 ###Authors
+
 * **M.Alfa Riza** - *Backend and Frontend* - [M.Alfa Riza](https://github.com/AlfaRiza "link github")
 
 ###Alur
+
 jika user sudah punya akun maka login
 jika belum punya maka registrasi dulu, verifikasi aktivasi menggunakan email agar menghindari dari bot
 sementara fiturnya itu dulu
