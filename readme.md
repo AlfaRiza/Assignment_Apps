@@ -7,7 +7,7 @@ nah mahasiswa bisa mengumpulkan tugas, bergabung kelas
 aslab membuat tugas, membuat kelas
 simplenya seperti itu, namun akan ada fitur-fitur yang lain
 
-##Getting Started
+## Getting Started
 
 aplikasi ini sudah saya hosting, untuk link :
 [link assignment app](https://upnlab.000webhostapp.com/ "Assignment App")
@@ -15,7 +15,7 @@ aplikasi ini sudah saya hosting, untuk link :
 [link ppt](https://drive.google.com/open?id=1pm-lywSlS2StpLohQmFipAiVQWDO4tJ1 "PPT")
 
 
-###Fitur
+### Fitur
 
 - [x] Registrasi
 - [x] Login
@@ -38,16 +38,16 @@ aplikasi ini sudah saya hosting, untuk link :
 - [x] batas waktu pengumpulan tugas
 - [x] search kelas
 
-###Coming soon
+### Coming soon
 
 - [ ]Live CRUD
 - [ ]Enkripsi link
 
-###Authors
+### Authors
 
 * **M.Alfa Riza** - *Backend and Frontend* - [M.Alfa Riza](https://github.com/AlfaRiza "link github")
 
-###Alur
+### Alur
 
 jika user sudah punya akun maka login
 jika belum punya maka registrasi dulu, verifikasi aktivasi menggunakan email agar menghindari dari bot
